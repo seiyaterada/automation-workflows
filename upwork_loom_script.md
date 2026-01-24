@@ -1,0 +1,3 @@
+Hey {name}, saw you were looking for {problem statement}. I do this sort of thing all the time and I actually just put together this customized flow chart here, walking you through a potential solution for what your system might look like. I spent a couple minutes wiring this together and is by no-means the final thing but I just wanted to give you some value upfront. So if you want me to give you this whole flowchart, I can send it to you, but I'd be happy to build this out for you.
+
+So to start, {go through flowchart}
