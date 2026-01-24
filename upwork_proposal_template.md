@@ -1,4 +1,4 @@
-I build systems and automations that provide real, measurable value for the business, not just builds that “works,” but solutions that save time, reduce manual effort, and scale reliably.
+I build systems and automations that provide real, measurable value for the business, not just builds that “work,” but solutions that save time, reduce manual effort, and scale reliably.
 
 I focus on:
 - Understanding the business goal first, then choosing the right technical solution
