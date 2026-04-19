@@ -34,26 +34,56 @@ SCOPES = [
 ]
 
 # ---------------------------------------------------------------------------
-# Email templates — fill in when user provides copy
+# Email templates
+# Replies are sent in-thread so Instantly handles the subject automatically.
+# Leave subject as empty string to let Instantly inherit Re: {original subject}.
 # Variables: {first_name}, {sender_first_name}, {loom_link}
 # ---------------------------------------------------------------------------
 
 FOLLOWUP_TEMPLATES = {
     1: {
-        "subject": "[PLACEHOLDER — replace with follow-up #1 subject]",
-        "body": "[PLACEHOLDER — replace with follow-up #1 body]",
+        "subject": "",
+        "body": (
+            "Hi {first_name},\n\n"
+            "Wanted to check in if you had a chance to watch the video. "
+            "Let me know if you have any questions.\n\n"
+            "Thanks,\n"
+            "{sender_first_name}"
+        ),
     },
     2: {
-        "subject": "[PLACEHOLDER — replace with follow-up #2 subject]",
-        "body": "[PLACEHOLDER — replace with follow-up #2 body]",
+        "subject": "",
+        "body": (
+            "Hi {first_name},\n\n"
+            "Just wanted to see if you were able to make a bit of time to watch "
+            "the video that I recorded you. Would love to know what you think.\n\n"
+            "Thanks,\n"
+            "{sender_first_name}"
+        ),
     },
     3: {
-        "subject": "[PLACEHOLDER — replace with follow-up #3 subject]",
-        "body": "[PLACEHOLDER — replace with follow-up #3 body]",
+        "subject": "",
+        "body": (
+            "Hi {first_name},\n\n"
+            "Would it be easier if I sent over a quick summary of what's in the "
+            "video instead? Happy to break it down in a few bullet points if that "
+            "saves you some time.\n\n"
+            "Just let me know either way.\n\n"
+            "Thanks,\n"
+            "{sender_first_name}"
+        ),
     },
     4: {
-        "subject": "[PLACEHOLDER — replace with follow-up #4 subject]",
-        "body": "[PLACEHOLDER — replace with follow-up #4 body]",
+        "subject": "",
+        "body": (
+            "Hi {first_name},\n\n"
+            "I don't want to keep filling up your inbox if the timing isn't right "
+            "— this will be my last follow-up.\n\n"
+            "If you ever want to revisit the video or chat about what we put "
+            "together for you, feel free to reach out anytime.\n\n"
+            "Wishing you all the best,\n"
+            "{sender_first_name}"
+        ),
     },
 }
 

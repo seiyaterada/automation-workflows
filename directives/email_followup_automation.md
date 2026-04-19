@@ -83,35 +83,57 @@ the lead is skipped until the next run.
 
 ## Email Copy
 
-> **TODO: User will provide copy for all 4 follow-ups.**
+Replies are sent in-thread so Instantly inherits `Re: {original subject}` automatically — no subject needed in templates.
 
-Templates support these variables:
+Template variables:
 - `{first_name}` — lead's first name
-- `{sender_first_name}` — sender's first name
-- `{loom_link}` — Loom video URL
+- `{sender_first_name}` — sender's first name (from `sender_first_name` column, falls back to mailbox prefix)
+- `{loom_link}` — Loom video URL (available if needed)
 
 ### Follow-up #1
-**Subject:** `[PLACEHOLDER]`
 ```
-[PLACEHOLDER — user to provide]
+Hi {first_name},
+
+Wanted to check in if you had a chance to watch the video. Let me know if you have any questions.
+
+Thanks,
+{sender_first_name}
 ```
 
 ### Follow-up #2
-**Subject:** `[PLACEHOLDER]`
 ```
-[PLACEHOLDER — user to provide]
+Hi {first_name},
+
+Just wanted to see if you were able to make a bit of time to watch the video that I recorded you. Would love to know what you think.
+
+Thanks,
+{sender_first_name}
 ```
 
 ### Follow-up #3
-**Subject:** `[PLACEHOLDER]`
+*(Offers an alternative — a summary — to lower the barrier to engagement)*
 ```
-[PLACEHOLDER — user to provide]
+Hi {first_name},
+
+Would it be easier if I sent over a quick summary of what's in the video instead? Happy to break it down in a few bullet points if that saves you some time.
+
+Just let me know either way.
+
+Thanks,
+{sender_first_name}
 ```
 
 ### Follow-up #4
-**Subject:** `[PLACEHOLDER]`
+*(Breakup email — creates urgency by signalling it's the last touch. High response rate.)*
 ```
-[PLACEHOLDER — user to provide]
+Hi {first_name},
+
+I don't want to keep filling up your inbox if the timing isn't right — this will be my last follow-up.
+
+If you ever want to revisit the video or chat about what we put together for you, feel free to reach out anytime.
+
+Wishing you all the best,
+{sender_first_name}
 ```
 
 ---
@@ -195,6 +217,4 @@ INSTANTLY_API_KEY=<your_instantly_api_key>
 
 ## Open Questions
 
-1. **Email copy** — user to provide all 4 follow-up templates
-2. **Reply subject line** — should follow-ups use `Re: {original subject}` or a
-   custom subject? (Instantly reply API may handle this automatically)
+1. **Reply subject line** — Instantly should inherit `Re: {original subject}` automatically for in-thread replies. Verify this is the case when testing.
