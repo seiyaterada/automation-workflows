@@ -130,7 +130,7 @@ def update_lead_after_send(sheet, lead: dict, new_count: int, new_uuid: str, sen
         return headers.index(name) + 1  # 1-based
 
     sheet.update_cell(row_idx, col("loom_followup_count"), new_count)
-    sheet.update_cell(row_idx, col("loom_last_followup_at"), sent_at)
+    sheet.update_cell(row_idx, col("loom_last_follow_up_at"), sent_at)
     if new_uuid:
         sheet.update_cell(row_idx, col("reply_to_uuid"), new_uuid)
     if new_count >= 4:
@@ -163,7 +163,7 @@ def is_due(lead: dict) -> bool:
     if count == 0:
         anchor = parse_dt(str(lead.get("loom_sent_at", "")))
     else:
-        anchor = parse_dt(str(lead.get("loom_last_followup_at", "")))
+        anchor = parse_dt(str(lead.get("loom_last_follow_up_at", "")))
         if anchor is None:
             # Fallback: compute from loom_sent_at + cumulative days (1+2+...+count)
             anchor = parse_dt(str(lead.get("loom_sent_at", "")))

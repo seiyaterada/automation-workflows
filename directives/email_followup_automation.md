@@ -32,12 +32,12 @@ Sheet: "Interested Leads" — confirmed column names:
 | `loom_sent_at` | ISO datetime | When the loom was sent — used as timing anchor |
 | `loom_link` | URL | Loom video URL |
 | `loom_followup_count` | integer | How many follow-ups sent so far (0–4) |
-| `loom_last_followup_at` | ISO datetime | **Add this column** — updated after each send |
+| `loom_last_follow_up_at` | ISO datetime | **Add this column** — updated after each send |
 | `reply_to_uuid` | string | Instantly message UUID — used for reply-in-thread |
 | `thread_id` | string | Instantly thread ID |
 | `campaign_id` | string | Instantly campaign ID |
 
-> **Action required:** Add `loom_last_followup_at` column to the sheet. The script
+> **Action required:** Add `loom_last_follow_up_at` column to the sheet. The script
 > updates this after each send to anchor the next follow-up's timing.
 
 ---
@@ -59,9 +59,9 @@ Follow-up spacing increments by 1 day each round:
 | `loom_followup_count` | Days to wait after previous send | Anchor for wait |
 |---|---|---|
 | 0 (no FU sent yet) | 1 day | `loom_sent_at` |
-| 1 | 2 days | `loom_last_followup_at` |
-| 2 | 3 days | `loom_last_followup_at` |
-| 3 | 4 days | `loom_last_followup_at` |
+| 1 | 2 days | `loom_last_follow_up_at` |
+| 2 | 3 days | `loom_last_follow_up_at` |
+| 3 | 4 days | `loom_last_follow_up_at` |
 
 Formula: `days_to_wait = loom_followup_count + 1`
 
@@ -184,7 +184,7 @@ python execution/email_followup_pipeline.py --dry-run   # preview without sendin
       → On API error: log and skip — do NOT increment count
    e. Update sheet row:
       - loom_followup_count += 1
-      - loom_last_followup_at = now
+      - loom_last_follow_up_at = now
       - reply_to_uuid = UUID returned by Instantly API
       - If new count == 4: status = lost
 4. Print summary: leads processed, emails sent, skipped, errors
@@ -201,7 +201,7 @@ python execution/email_followup_pipeline.py --dry-run   # preview without sendin
 | Missing `loom_link` | Skip and log warning |
 | Instantly API error on send | Log error, skip — do NOT update count (retries next run) |
 | Sheet update fails after email sent | Log the discrepancy; count will be off by 1 — manual fix |
-| `loom_last_followup_at` missing for count > 0 | Fall back to `loom_sent_at` + cumulative days |
+| `loom_last_follow_up_at` missing for count > 0 | Fall back to `loom_sent_at` + cumulative days |
 | `sender_first_name` blank | Fall back to first word before `@` in `eaccount` |
 
 ---
